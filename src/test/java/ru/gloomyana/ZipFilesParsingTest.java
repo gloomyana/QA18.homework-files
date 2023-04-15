@@ -31,13 +31,11 @@ public class ZipFilesParsingTest {
     }
 
     static void extractFilesFromZip(String zipName) throws ZipException, URISyntaxException {
-
         URL resource = cl.getResource(zipName);
         assert resource != null;
         File zipFIle = Paths.get(resource.toURI()).toFile();
         String extractionPath = zipFIle.getParent();
         ZipFile filesZip = new ZipFile(zipFIle);
-
         filesZip.extractAll(extractionPath);
     }
 
