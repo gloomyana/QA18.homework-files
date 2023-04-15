@@ -1,4 +1,4 @@
-package ru.gloomyjana;
+package ru.gloomyana;
 
 
 public class Character {

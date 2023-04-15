@@ -1,4 +1,4 @@
-package ru.gloomyjana;
+package ru.gloomyana;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
