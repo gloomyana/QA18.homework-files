@@ -1,0 +1,17 @@
+{
+  "name": "Kira",
+  "race": "blood elf",
+  "classAndSpec": {
+    "className": "Hunter",
+    "specName": "Beast Mastery"
+  },
+  "abilities": [
+    "Kill Command",
+    "Cobra Shot",
+    "Bestial Wrath"
+  ],
+  "isActive": true,
+  "killsCount": 88,
+  "deathsCount": 12,
+  "completedQuestsCount": 130
+}
