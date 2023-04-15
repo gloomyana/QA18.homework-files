@@ -33,6 +33,7 @@ public class ZipFilesParsingTest {
     static void extractFilesFromZip(String zipName) throws ZipException, URISyntaxException {
 
         URL resource = cl.getResource(zipName);
+        assert resource != null;
         File zipFIle = Paths.get(resource.toURI()).toFile();
         String extractionPath = zipFIle.getParent();
         ZipFile filesZip = new ZipFile(zipFIle);
@@ -44,8 +45,7 @@ public class ZipFilesParsingTest {
     @DisplayName("Reading extracted PDF file")
     void parseExtractedPdfTest() throws Exception {
         URL pdfURL = cl.getResource("PostgreSQL-Cheat-Sheet.pdf");
-        System.out.println(pdfURL.toString());
-
+        assert pdfURL != null;
         PDF pdf = new PDF(pdfURL);
 
         Assertions.assertEquals("PowerPoint Presentation", pdf.title);
@@ -59,8 +59,7 @@ public class ZipFilesParsingTest {
     @DisplayName("Reading extracted XLS file")
     void parseExtractedXlsTest() throws Exception {
         URL xlsURL = cl.getResource("menu.xlsx");
-        System.out.println(xlsURL.toString());
-
+        assert xlsURL != null;
         XLS xls = new XLS(xlsURL);
 
         Assertions.assertEquals(xls.excel.getSheetAt(0).getRow(1).getCell(0)
@@ -71,12 +70,14 @@ public class ZipFilesParsingTest {
     @DisplayName("Reading extracted CSV file")
     void parseExtractedCsvTest() throws IOException, CsvException {
         List<String[]> content;
-        try (InputStream is = cl.getResourceAsStream("schedule.csv");
-             InputStreamReader isr = new InputStreamReader(is)) {
-            CSVReader csvReader = new CSVReader(isr);
-            content = csvReader.readAll();
-            Assertions.assertArrayEquals(new String[]{"4", "Selenide #1. Алексей Виноградов", "2023-02-21"},
-                    content.get(3));
+        try (InputStream is = cl.getResourceAsStream("schedule.csv")) {
+            assert is != null;
+            try (InputStreamReader isr = new InputStreamReader(is)) {
+                CSVReader csvReader = new CSVReader(isr);
+                content = csvReader.readAll();
+                Assertions.assertArrayEquals(new String[]{"4", "Selenide #1. Алексей Виноградов", "2023-02-21"},
+                        content.get(3));
+            }
         }
     }
 }
